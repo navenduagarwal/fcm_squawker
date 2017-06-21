@@ -84,7 +84,6 @@ public class MainActivity extends AppCompatActivity implements
 
         Bundle extras = getIntent().getExtras();
         if (extras != null && extras.containsKey("test")) {
-            Log.d("Navendu", extras.getString("test"));
         }
 
     }
