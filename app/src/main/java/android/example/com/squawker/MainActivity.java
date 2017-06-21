@@ -38,25 +38,21 @@ import android.view.MenuItem;
 public class MainActivity extends AppCompatActivity implements
         LoaderManager.LoaderCallbacks<Cursor> {
 
-    private static String LOG_TAG = MainActivity.class.getSimpleName();
-    private static final int LOADER_ID_MESSAGES = 0;
-
-    RecyclerView mRecyclerView;
-    LinearLayoutManager mLayoutManager;
-    SquawkAdapter mAdapter;
-
     static final String[] MESSAGES_PROJECTION = {
             SquawkContract.COLUMN_AUTHOR,
             SquawkContract.COLUMN_MESSAGE,
             SquawkContract.COLUMN_DATE,
             SquawkContract.COLUMN_AUTHOR_KEY
     };
-
     static final int COL_NUM_AUTHOR = 0;
     static final int COL_NUM_MESSAGE = 1;
     static final int COL_NUM_DATE = 2;
     static final int COL_NUM_AUTHOR_KEY = 3;
-
+    private static final int LOADER_ID_MESSAGES = 0;
+    private static String LOG_TAG = MainActivity.class.getSimpleName();
+    RecyclerView mRecyclerView;
+    LinearLayoutManager mLayoutManager;
+    SquawkAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +81,11 @@ public class MainActivity extends AppCompatActivity implements
 
         // Start the loader
         getSupportLoaderManager().initLoader(LOADER_ID_MESSAGES, null, this);
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null && extras.containsKey("test")) {
+            Log.d("Navendu", extras.getString("test"));
+        }
 
     }
 
